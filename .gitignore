@@ -1,0 +1,13 @@
+# 依赖与构建产物
+node_modules/
+*.log
+install*.log
+
+# 编辑器 / 系统
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# 说明：lib/ 保留入库（GitHub 分发策略：lib 产物提交进仓库，
+# 无 prepare 脚本，pnpm 9+ 默认阻止 git 依赖构建脚本时也能直装）

@@ -1,0 +1,5 @@
+# MyGO!!!!! Live2D 桌宠插件：插入 web plugin roster。
+# 安装：dsh plugin --profile <name> add <path-or-git-url>
+- insert:
+    - id: ui-live2d-mygo
+      name: 'dsh-live2d-mygo'
