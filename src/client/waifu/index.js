@@ -39,22 +39,22 @@ function createHooks() {
 
 async function loadWidget(hooks) {
     document.body.insertAdjacentHTML("beforeend", `
-    <div id="waifu">
-      <canvas id="live2d" width="800" height="800"></canvas>
-      <div id="waifu-tips"></div>
-      <div id="waifu-tool"></div>
+    <div id="waifu-mygo">
+      <canvas id="live2d-mygo" width="800" height="800"></canvas>
+      <div id="waifu-tips-mygo"></div>
+      <div id="waifu-tool-mygo"></div>
     </div>
-    <div id="model-selection-panel" class="waifu-panel" style="display: none;"></div>
-    <div id="texture-selection-panel" class="waifu-panel" style="display: none;"></div>`);
+    <div id="model-selection-panel-mygo" class="waifu-panel waifu-panel-mygo" style="display: none;"></div>
+    <div id="texture-selection-panel-mygo" class="waifu-panel waifu-panel-mygo" style="display: none;"></div>`);
 
     const model = new Model();
-    localStorage.removeItem("waifu-display");
-    sessionStorage.removeItem("waifu-text");
+    localStorage.removeItem("mygo-waifu-display");
+    sessionStorage.removeItem("mygo-waifu-text");
 
-    const waifu = document.getElementById("waifu");
-    const toolBar = document.getElementById("waifu-tool");
-    const modelPanel = document.getElementById("model-selection-panel");
-    const texturePanel = document.getElementById("texture-selection-panel");
+    const waifu = document.getElementById("waifu-mygo");
+    const toolBar = document.getElementById("waifu-tool-mygo");
+    const modelPanel = document.getElementById("model-selection-panel-mygo");
+    const texturePanel = document.getElementById("texture-selection-panel-mygo");
     let selectedModelIndex = null;
 
     const drag = enableDrag(waifu);
@@ -111,8 +111,8 @@ async function loadWidget(hooks) {
         if (!tools[tool]) continue;
         const { icon, callback } = tools[tool];
         toolBar.insertAdjacentHTML("beforeend",
-            `<span id="waifu-tool-${tool}" title="${TOOL_TITLES[tool] || tool}">${decodeURIComponent(icon).replace("data:image/svg+xml,", "")}</span>`);
-        document.getElementById(`waifu-tool-${tool}`).addEventListener("click", callback);
+            `<span id="waifu-tool-mygo-${tool}" title="${TOOL_TITLES[tool] || tool}">${decodeURIComponent(icon).replace("data:image/svg+xml,", "")}</span>`);
+        document.getElementById(`waifu-tool-mygo-${tool}`).addEventListener("click", callback);
     }
 
     /* ---------- 角色选择面板 ---------- */
@@ -194,10 +194,10 @@ async function loadWidget(hooks) {
 
     /* ---------- 点击空白处关闭面板 ---------- */
     hooks.on(document, "click", event => {
-        if (event.target.closest("#model-selection-panel") ||
-            event.target.closest("#texture-selection-panel") ||
-            event.target.closest("#waifu-tool") ||
-            event.target.closest("#waifu-toggle")) {
+        if (event.target.closest("#model-selection-panel-mygo") ||
+            event.target.closest("#texture-selection-panel-mygo") ||
+            event.target.closest("#waifu-tool-mygo") ||
+            event.target.closest("#waifu-toggle-mygo")) {
             return;
         }
         closePanels();
@@ -251,9 +251,9 @@ function enableDrag(widgetEl) {
     const drag = { active: false, moved: false, startX: 0, startY: 0, originX: 0, originY: 0 };
 
     widgetEl.addEventListener("pointerdown", event => {
-        if (event.target.closest("#waifu-tool") ||
-            event.target.closest(".waifu-panel") ||
-            event.target.closest("#waifu-toggle")) {
+        if (event.target.closest("#waifu-tool-mygo") ||
+            event.target.closest(".waifu-panel-mygo") ||
+            event.target.closest("#waifu-toggle-mygo")) {
             return;
         }
         drag.active = true;
@@ -288,7 +288,7 @@ function enableDrag(widgetEl) {
         if (drag.moved) {
             const rect = widgetEl.getBoundingClientRect();
             try {
-                localStorage.setItem("waifu-pos", JSON.stringify({ left: rect.left, top: rect.top }));
+                localStorage.setItem("mygo-waifu-pos", JSON.stringify({ left: rect.left, top: rect.top }));
             } catch (error) { /* 忽略 */ }
         }
     };
@@ -300,7 +300,7 @@ function enableDrag(widgetEl) {
 
 function restorePosition(widgetEl) {
     try {
-        const pos = JSON.parse(localStorage.getItem("waifu-pos"));
+        const pos = JSON.parse(localStorage.getItem("mygo-waifu-pos"));
         if (!pos || typeof pos.left !== "number" || typeof pos.top !== "number") return;
         const left = Math.min(Math.max(pos.left, -120), window.innerWidth - 40);
         const top = Math.min(Math.max(pos.top, -80), window.innerHeight - 40);
@@ -349,7 +349,7 @@ function registerEventListener(model, drag, hooks) {
     }, 1000);
 
     hooks.on(window, "mouseover", event => {
-        if (event.target.closest("#live2d")) {
+        if (event.target.closest("#live2d-mygo")) {
             showMessage(model, getMessageArray(), 4000, 9);
             return;
         }
@@ -363,7 +363,7 @@ function registerEventListener(model, drag, hooks) {
     });
     hooks.on(window, "click", event => {
         if (drag.moved) return;
-        if (event.target.closest("#live2d")) {
+        if (event.target.closest("#live2d-mygo")) {
             showMessage(model, getMessageArray(), 4000, 9);
             return;
         }
@@ -398,10 +398,10 @@ function registerEventListener(model, drag, hooks) {
 async function initWidget(config) {
     const hooks = createHooks();
     setConfig(config);
-    document.getElementById("waifu-toggle")?.remove();
-    document.getElementById("waifu")?.remove();
-    document.body.insertAdjacentHTML("beforeend", `<div id="waifu-toggle"><span>Live2D</span></div>`);
-    const toggle = document.getElementById("waifu-toggle");
+    document.getElementById("waifu-toggle-mygo")?.remove();
+    document.getElementById("waifu-mygo")?.remove();
+    document.body.insertAdjacentHTML("beforeend", `<div id="waifu-toggle-mygo"><span>Live2D</span></div>`);
+    const toggle = document.getElementById("waifu-toggle-mygo");
     let stopWidget = () => { };
     const toggleStop = () => {
         hooks.stop();
@@ -414,15 +414,15 @@ async function initWidget(config) {
             stopWidget = await loadWidget(hooks);
             toggle.removeAttribute("first-time");
         } else {
-            localStorage.removeItem("waifu-display");
-            const waifuEl = document.getElementById("waifu");
+            localStorage.removeItem("mygo-waifu-display");
+            const waifuEl = document.getElementById("waifu-mygo");
             if (waifuEl) {
                 waifuEl.style.display = "";
                 setTimeout(() => { waifuEl.style.bottom = "20px"; }, 0);
             }
         }
     });
-    if (localStorage.getItem("waifu-display") && Date.now() - localStorage.getItem("waifu-display") <= 86400000) {
+    if (localStorage.getItem("mygo-waifu-display") && Date.now() - localStorage.getItem("mygo-waifu-display") <= 86400000) {
         toggle.setAttribute("first-time", true);
         setTimeout(() => {
             toggle.classList.add("waifu-toggle-active");

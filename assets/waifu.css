@@ -1,8 +1,8 @@
 /* ============ 侧边开关（隐藏后用于唤回） ============ */
-#waifu-toggle {
+#waifu-toggle-mygo {
   background: linear-gradient(180deg, #9b8cff, #6b5ce7);
   border-radius: 6px 6px 0 0;
-  bottom: 66px;
+  bottom: 242px;
   color: #fff;
   cursor: pointer;
   font-size: 12px;
@@ -18,16 +18,16 @@
   box-shadow: 0 2px 8px rgba(107, 92, 231, 0.35);
 }
 
-#waifu-toggle.waifu-toggle-active {
+#waifu-toggle-mygo.waifu-toggle-active {
   margin-left: -50px;
 }
 
-#waifu-toggle.waifu-toggle-active:hover {
+#waifu-toggle-mygo.waifu-toggle-active:hover {
   margin-left: -30px;
 }
 
 /* ============ 主体容器 ============ */
-#waifu {
+#waifu-mygo {
   bottom: 20px;
   left: -40px;
   line-height: 0;
@@ -39,17 +39,17 @@
   touch-action: none; /* 拖拽时不触发页面手势 */
 }
 
-#waifu:not(.waifu-dragging):hover {
+#waifu-mygo:not(.waifu-dragging):hover {
   transform: translateY(-5px);
 }
 
-#waifu.waifu-dragging {
+#waifu-mygo.waifu-dragging {
   cursor: grabbing;
   user-select: none;
 }
 
 /* ============ 气泡 ============ */
-#waifu-tips {
+#waifu-tips-mygo {
   animation: shake 50s ease-in-out 5s infinite;
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(8px);
@@ -75,7 +75,7 @@
   color: #333;
 }
 
-#waifu-tips::after {
+#waifu-tips-mygo::after {
   content: "";
   position: absolute;
   left: 30px;
@@ -88,30 +88,30 @@
   filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.08));
 }
 
-#waifu-tips.waifu-tips-active {
+#waifu-tips-mygo.waifu-tips-active {
   opacity: 1;
   transition: opacity 0.2s;
 }
 
-#waifu-tips span {
+#waifu-tips-mygo span {
   color: #6b5ce7;
   font-weight: 600;
 }
 
 /* ============ 画布 ============ */
-#live2d {
+#live2d-mygo {
   cursor: grab;
   height: 400px;
   position: relative;
   width: 400px;
 }
 
-#live2d:active {
+#live2d-mygo:active {
   cursor: grabbing;
 }
 
 /* ============ 工具按钮栏 ============ */
-#waifu-tool {
+#waifu-tool-mygo {
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -128,19 +128,19 @@
   z-index: 5;
 }
 
-#waifu:hover #waifu-tool,
-#waifu-tool:hover {
+#waifu-mygo:hover #waifu-tool-mygo,
+#waifu-tool-mygo:hover {
   opacity: 1;
 }
 
-#waifu-tool span {
+#waifu-tool-mygo span {
   display: block;
   height: 40px;
   line-height: 40px;
   text-align: center;
 }
 
-#waifu-tool svg {
+#waifu-tool-mygo svg {
   fill: #7b8c9d;
   cursor: pointer;
   height: 22px;
@@ -148,7 +148,7 @@
   transition: fill 0.3s, transform 0.3s;
 }
 
-#waifu-tool svg:hover {
+#waifu-tool-mygo svg:hover {
   fill: #6b5ce7;
   transform: scale(1.15);
 }
@@ -236,7 +236,7 @@
 }
 
 /* --- 角色按钮 --- */
-#model-selection-panel .model-option {
+#model-selection-panel-mygo .model-option {
   align-items: center;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -252,13 +252,13 @@
   width: 100%;
 }
 
-#model-selection-panel .model-option:hover {
+#model-selection-panel-mygo .model-option:hover {
   background: rgba(139, 124, 255, 0.18);
   border-color: var(--accent, #8f7bff);
   transform: translateX(2px);
 }
 
-#model-selection-panel .model-option img {
+#model-selection-panel-mygo .model-option img {
   border-radius: 8px;
   display: block;
   height: 44px;
@@ -267,17 +267,17 @@
   background: rgba(255, 255, 255, 0.08);
 }
 
-#model-selection-panel .model-option-text {
+#model-selection-panel-mygo .model-option-text {
   display: flex;
   flex-direction: column;
 }
 
-#model-selection-panel .model-option-name {
+#model-selection-panel-mygo .model-option-name {
   font-size: 14px;
   font-weight: 600;
 }
 
-#model-selection-panel .model-option-en {
+#model-selection-panel-mygo .model-option-en {
   color: #8f88b8;
   font-size: 11px;
   text-transform: uppercase;
@@ -285,13 +285,13 @@
 }
 
 /* --- 换装按钮 --- */
-#texture-selection-panel .waifu-panel-body {
+#texture-selection-panel-mygo .waifu-panel-body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 6px;
 }
 
-#texture-selection-panel .texture-option {
+#texture-selection-panel-mygo .texture-option {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 8px;
@@ -304,13 +304,13 @@
   transition: background 0.25s, border-color 0.25s, transform 0.15s;
 }
 
-#texture-selection-panel .texture-option:hover {
+#texture-selection-panel-mygo .texture-option:hover {
   background: rgba(139, 124, 255, 0.2);
   border-color: #8f7bff;
   transform: translateY(-2px);
 }
 
-#texture-selection-panel .texture-option img {
+#texture-selection-panel-mygo .texture-option img {
   aspect-ratio: 1 / 1;
   display: block;
   object-fit: cover;
@@ -319,7 +319,7 @@
   border-radius: 8px 8px 0 0;
 }
 
-#texture-selection-panel .texture-option span {
+#texture-selection-panel-mygo .texture-option span {
   display: block;
   padding: 4px 2px;
   white-space: nowrap;
@@ -327,7 +327,7 @@
   text-overflow: ellipsis;
 }
 
-#texture-selection-panel .texture-option-text {
+#texture-selection-panel-mygo .texture-option-text {
   align-items: center;
   display: flex;
   justify-content: center;
@@ -335,7 +335,7 @@
   font-size: 12px;
 }
 
-#texture-selection-panel .texture-option-text span {
+#texture-selection-panel-mygo .texture-option-text span {
   padding: 8px 4px;
 }
 
@@ -395,12 +395,12 @@
 
 /* ============ 小屏适配 ============ */
 @media (max-width: 640px) {
-  #waifu-tips {
+  #waifu-tips-mygo {
     width: 200px;
     font-size: 13px;
   }
 
-  #waifu-tool {
+  #waifu-tool-mygo {
     right: 88px;
   }
 

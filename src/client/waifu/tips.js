@@ -1314,7 +1314,7 @@ const tips = {
       ]
     },
     {
-      "selector": "#waifu-tool-switch-model",
+      "selector": "#waifu-tool-mygo-switch-model",
       "text": [
         [
           {
@@ -1384,7 +1384,7 @@ const tips = {
       ]
     },
     {
-      "selector": "#waifu-tool-photo",
+      "selector": "#waifu-tool-mygo-photo",
       "text": [
         [
           {
@@ -1419,7 +1419,7 @@ const tips = {
       ]
     },
     {
-      "selector": "#waifu-tool-info",
+      "selector": "#waifu-tool-mygo-info",
       "text": [
         [
           {
@@ -1454,7 +1454,7 @@ const tips = {
       ]
     },
     {
-      "selector": "#waifu-tool-quit",
+      "selector": "#waifu-tool-mygo-quit",
       "text": [
         [
           {

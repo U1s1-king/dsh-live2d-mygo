@@ -28,12 +28,12 @@ const tools = {
     "quit": {
         icon: fa_xmark,
         callback: () => {
-            localStorage.setItem("waifu-display", Date.now());
-            const waifu = document.getElementById("waifu");
+            localStorage.setItem("mygo-waifu-display", Date.now());
+            const waifu = document.getElementById("waifu-mygo");
             if (waifu) waifu.style.bottom = "-500px";
             // 异步卸载防护：定时器触发时元素可能已被移除，空值跳过
             setTimeout(() => {
-                const toggle = document.getElementById("waifu-toggle");
+                const toggle = document.getElementById("waifu-toggle-mygo");
                 if (toggle) toggle.classList.add("waifu-toggle-active");
             }, 3000);
         }

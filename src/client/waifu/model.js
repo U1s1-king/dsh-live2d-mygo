@@ -22,7 +22,7 @@ class Model {
     constructor() {
         this.cdnPath = getConfig().cdnPath;
         this.app = new PIXI.Application({
-            view: document.getElementById("live2d"),
+            view: document.getElementById("live2d-mygo"),
             autoStart: true,
             width: 800,
             height: 800,

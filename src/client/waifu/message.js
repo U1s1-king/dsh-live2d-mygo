@@ -4,21 +4,21 @@ let messageTimer;
 
 function showMessage(model, text, timeout, priority) {
     if (!text) return;
-    const storedPriority = parseInt(sessionStorage.getItem("waifu-text"), 10);
+    const storedPriority = parseInt(sessionStorage.getItem("mygo-waifu-text"), 10);
     if (!Number.isNaN(storedPriority) && storedPriority > priority) return;
     if (messageTimer) {
         clearTimeout(messageTimer);
         messageTimer = null;
     }
     text = randomSelection(text);
-    sessionStorage.setItem("waifu-text", priority);
-    const tips = document.getElementById("waifu-tips");
+    sessionStorage.setItem("mygo-waifu-text", priority);
+    const tips = document.getElementById("waifu-tips-mygo");
     if (tips) {
         tips.innerHTML = text.text || "";
         tips.classList.add("waifu-tips-active");
     }
     messageTimer = setTimeout(() => {
-        sessionStorage.removeItem("waifu-text");
+        sessionStorage.removeItem("mygo-waifu-text");
         if (tips) tips.classList.remove("waifu-tips-active");
     }, timeout);
     if (model && model.model) {
